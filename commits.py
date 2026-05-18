@@ -25,7 +25,7 @@ type Details = tuple(list[str], list[date])
 
 def get_commit_details() -> Details:
     """
-    Extract names from 'Author:' lines in git log output.
+    Extract committer names and commit dates from git log output.
     """
     result = run(["git", "log"], capture_output=True)
     lines = result.stdout.decode().split("\n")
