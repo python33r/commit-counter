@@ -62,15 +62,18 @@ def display_weekly_totals(dates: list[date]):
     """
     totals = Counter(shift_to_monday(d) for d in dates)
 
+    first_week = shift_to_monday(min(dates))
+    last_week = shift_to_monday(max(dates))
+
     print("\n+------------+---------+")
     print("| Week       | Commits |")
     print("+------------+---------+")
 
-    week_start = shift_to_monday(min(dates))
-    while week_start <= shift_to_monday(max(dates)):
-        weekly_total = totals.get(week_start, 0)
-        print(f"| {week_start} |   {weekly_total:3}   |")
-        week_start += SEVEN_DAYS
+    week = first_week
+    while week <= last_week:
+        commits = totals.get(week, 0)
+        print(f"| {week} |   {commits:3}   |")
+        week += SEVEN_DAYS
 
     print("+----------------------+")
 
