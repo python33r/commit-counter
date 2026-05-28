@@ -52,8 +52,7 @@ def display_individual_counts(names: list[str]):
 
 
 def shift_to_monday(d: date) -> date:
-    year, week, _ = d.isocalendar()
-    return date.fromisocalendar(year, week, 1)
+    return d - timedelta(days=d.weekday())
 
 
 def display_weekly_totals(dates: list[date]):
